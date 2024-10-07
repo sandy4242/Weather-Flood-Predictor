@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="index7.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="weather-info" id="predictionResult">
+            <p id="cityName">City: </p>
+            <p id="weatherCondition">Temperature: </p>
+            <p id="humidity">Humidity: </p>
+            <p id="windSpeed">Wind Speed: </p>
+            <p id="floodRisk">Flood Risk: </p>
+            <p id="noFloodProb">Probability of No Flood: </p>
+            <p id="floodProb">Probability of Flood: </p>
+        </div>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        // Retrieve the data from sessionStorage
+        const city = sessionStorage.getItem('city');
+        const temperature = sessionStorage.getItem('temperature');
+        const humidity = sessionStorage.getItem('humidity');
+        const windSpeed = sessionStorage.getItem('windSpeed');
+        const floodRisk = sessionStorage.getItem('floodRisk');
+        const noFloodProb = sessionStorage.getItem('noFloodProb');
+        const floodProb = sessionStorage.getItem('floodProb');
+
+        // Check if data exists
+        if (city && temperature && humidity && windSpeed && floodRisk && noFloodProb && floodProb) {
+            // Display the data on the result page
+            document.getElementById('cityName').innerText = `City: ${city}`;
+            document.getElementById('weatherCondition').innerText = `Temperature: ${temperature}°C`;
+            document.getElementById('humidity').innerText = `Humidity: ${humidity}%`;
+            document.getElementById('windSpeed').innerText = `Wind Speed: ${windSpeed} m/s`;
+            document.getElementById('floodRisk').innerText = `Flood Risk: ${floodRisk}`;
+            document.getElementById('noFloodProb').innerText = `Probability of No Flood: ${(noFloodProb * 100).toFixed(2)}%`;
+            document.getElementById('floodProb').innerText = `Probability of Flood: ${(floodProb * 100).toFixed(2)}%`;
+        } else {
+            // If no data is found, prompt the user to go back
+            document.getElementById('predictionResult').innerHTML = "<p>No prediction data found. Please go back and enter a city.</p>";
+        }
+
+        // Go back function
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
