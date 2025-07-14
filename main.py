@@ -12,7 +12,7 @@ class InputModel(BaseModel):
     risk_factor: float
     altitude: float
 # uvicorn main:app --reload
-# Initialize the FastAPI app
+# Initialize the FastAPI app 
 app = FastAPI()
 
 # Allow CORS for all origins, so the API can be called from the frontend
